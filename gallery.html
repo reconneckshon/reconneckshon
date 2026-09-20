@@ -10,11 +10,298 @@
 <meta property="og:description" content="Reconneckshons Wellness Center is a holistic retreat in Hampton District, St. James, Jamaica, offering yoga, meditation, light therapy, prayer and relaxation in a peaceful, nature-filled setting.">
 <meta property="og:url" content="https://www.reconneckshons.com/gallery.html">
 <meta name="theme-color" content="#1e4a34">
-<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzFlNGEzNCIvPjxwYXRoIGQ9Ik04IDI0QzggMTQgMTQgOCAyNCA4YzAgMTAtNiAxNi0xNiAxNloiIGZpbGw9IiM3ZmFlN2EiLz48cGF0aCBkPSJNOSAyM2M0LTYgNy05IDEyLTEyIiBzdHJva2U9IiNmN2ZhZjMiIHN0cm9rZS13aWR0aD0iMS42IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<style>
+/* Reconneckshons Wellness Center — shared styles */
+
+:root {
+  --paper: #f7faf3;
+  --mist: #e6efdd;
+  --sage: #cfe0c4;
+  --leaf: #4c8a5b;
+  --forest: #1e4a34;
+  --deep: #143325;
+  --sun: #f2b632;
+  --sun-deep: #8a5a00;
+  --text: #1b2e23;
+  --muted: #4b5f53;
+  --rule: rgba(30, 74, 52, 0.22);
+
+  --display: "Young Serif", "Iowan Old Style", Georgia, serif;
+  --body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --wrap: 68rem;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: var(--forest); text-underline-offset: 0.18em; }
+a:hover { color: var(--deep); }
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem;
+  background: var(--deep); color: var(--paper);
+  padding: 0.6rem 1rem; border-radius: 6px; z-index: 100;
+}
+.skip:focus { top: 1rem; }
+
+.wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--deep);
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); }
+h3 { font-size: 1.3rem; }
+p { margin: 0 0 1.1em; max-width: 62ch; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(247, 250, 243, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 4.25rem; gap: 1rem;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--display); font-size: 1.3rem;
+  color: var(--deep); text-decoration: none;
+}
+.brand svg { width: 1.7rem; height: 1.7rem; }
+.nav ul { list-style: none; display: flex; gap: 1.75rem; margin: 0; padding: 0; align-items: center; }
+.nav a {
+  text-decoration: none; color: var(--text); font-weight: 500;
+  padding: 0.35rem 0; border-bottom: 2px solid transparent;
+}
+.nav a:hover { border-color: var(--leaf); }
+.nav a[aria-current="page"] { border-color: var(--sun); }
+.nav .nav-cta {
+  background: var(--forest); color: var(--paper);
+  padding: 0.5rem 1.1rem; border-radius: 999px; border: 0;
+}
+.nav .nav-cta:hover { background: var(--deep); color: var(--paper); }
+.nav-toggle {
+  display: none; background: none; border: 1.5px solid var(--forest);
+  color: var(--forest); border-radius: 999px; padding: 0.4rem 0.95rem;
+  font: inherit; font-weight: 600; cursor: pointer;
+}
+
+@media (max-width: 47.99rem) {
+  .nav-toggle { display: inline-block; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--paper); border-bottom: 1px solid var(--rule); padding: 0.5rem var(--gutter) 1.25rem; }
+  .nav.is-open { display: block; }
+  .nav ul { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+  .nav a { display: inline-block; padding: 0.6rem 0; }
+  .nav .nav-cta { margin-top: 0.5rem; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block; font: inherit; font-weight: 600;
+  padding: 0.85rem 1.6rem; border-radius: 999px;
+  text-decoration: none; border: 2px solid var(--forest);
+  background: var(--forest); color: var(--paper);
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--deep); border-color: var(--deep); color: var(--paper); }
+.btn.ghost { background: transparent; color: var(--forest); }
+.btn.ghost:hover { background: var(--forest); color: var(--paper); }
+.btn.on-dark { background: var(--sun); border-color: var(--sun); color: var(--deep); }
+.btn.on-dark:hover { background: #ffc94d; border-color: #ffc94d; color: var(--deep); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.75rem; }
+
+/* ---------- Hero (home) ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #d6e7cd 0%, var(--mist) 55%, #eef5e6 100%);
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+.hero-inner { position: relative; z-index: 2; padding-bottom: clamp(9rem, 22vw, 15rem); }
+.hero h1 {
+  font-size: clamp(2.5rem, 7.2vw, 5rem);
+  line-height: 1.03; color: var(--deep);
+}
+.hero h1 span { display: block; }
+.hero .lede { font-size: 1.2rem; margin-top: 1.6rem; max-width: 34rem; color: var(--text); }
+
+.sun {
+  position: absolute; z-index: 1;
+  right: clamp(1rem, 12vw, 11rem); top: clamp(3rem, 9vw, 7rem);
+  width: clamp(7rem, 20vw, 15rem); aspect-ratio: 1; border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 clamp(1rem, 2.4vw, 1.75rem) rgba(242, 182, 50, 0.22),
+              0 0 0 clamp(2.2rem, 5.6vw, 4.2rem) rgba(242, 182, 50, 0.11);
+}
+.hills { position: absolute; z-index: 1; left: 0; right: 0; bottom: -1px; width: 100%; height: clamp(9rem, 26vw, 18rem); }
+
+/* One orchestrated moment: the six words come into focus in turn, as the sun rises. */
+@keyframes into-focus { from { opacity: 0.16; transform: translateY(0.18em); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { transform: translateY(5rem); opacity: 0; } to { transform: none; opacity: 1; } }
+.hero h1 span { animation: into-focus 0.9s ease-out both; animation-delay: calc(var(--i) * 0.5s + 0.15s); }
+.sun { animation: rise 3.2s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 span, .sun { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+.section.tint { background: var(--mist); }
+.split { display: grid; gap: 1.5rem clamp(2rem, 6vw, 5rem); grid-template-columns: 1fr; }
+@media (min-width: 52rem) { .split { grid-template-columns: 1fr 1.25fr; align-items: start; } }
+
+.intro-note { color: var(--muted); }
+
+/* Services: a ruled list rather than a card grid */
+.offer-list { list-style: none; margin: 2.25rem 0 0; padding: 0; border-top: 1px solid var(--rule); }
+.offer-list li {
+  display: grid; gap: 0.25rem 2rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule);
+  grid-template-columns: 1fr;
+}
+.offer-list h3 { font-size: 1.4rem; }
+.offer-list p { margin: 0; color: var(--muted); }
+@media (min-width: 46rem) { .offer-list li { grid-template-columns: 16rem 1fr; align-items: baseline; } }
+
+/* Values band */
+.band { background: var(--forest); color: #e9f2e2; }
+.band h2, .band h3 { color: #fff; }
+.band .values { display: grid; gap: 2rem; margin-top: 2.5rem; grid-template-columns: 1fr; }
+.band .values > div { border-top: 3px solid var(--sun); padding-top: 1rem; }
+.band .values p { margin: 0.5rem 0 0; color: #d3e3ca; }
+@media (min-width: 52rem) { .band .values { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+
+/* FAQ */
+.faq { margin-top: 2rem; border-top: 1px solid var(--rule); max-width: 46rem; }
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq summary {
+  cursor: pointer; list-style: none; padding: 1.1rem 2.5rem 1.1rem 0; position: relative;
+  font-family: var(--display); font-size: 1.2rem; color: var(--deep);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%);
+  font-family: var(--body); font-size: 1.6rem; color: var(--leaf); transition: transform 0.2s;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq details p { padding-bottom: 1.1rem; margin: 0; color: var(--muted); }
+
+/* Responsibility notice */
+.notice { border-left: 4px solid var(--sun); background: #fff; padding: 1.5rem 1.75rem; border-radius: 0 10px 10px 0; max-width: 52rem; }
+.notice h2 { font-size: 1.6rem; margin-bottom: 0.9rem; }
+.notice p { margin-bottom: 0.8em; color: var(--text); }
+.notice p:last-child { margin-bottom: 0; }
+
+/* Contact */
+.visit { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 52rem) { .visit { grid-template-columns: 1fr 1.2fr; align-items: stretch; } }
+.contact-lines { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.contact-lines li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+.contact-lines strong { display: inline-block; min-width: 6.5rem; color: var(--deep); }
+.map { border: 0; width: 100%; min-height: 20rem; height: 100%; border-radius: 14px; background: var(--sage); }
+
+/* ---------- Page heading (inner pages) ---------- */
+.page-head { background: var(--mist); padding-block: clamp(3rem, 7vw, 5.5rem); position: relative; overflow: hidden; }
+.page-head h1 { font-size: clamp(2.3rem, 6vw, 4rem); max-width: 18ch; }
+.page-head p { font-size: 1.2rem; margin-top: 1.2rem; max-width: 40rem; }
+.page-head .sun-sm {
+  position: absolute; right: clamp(-3rem, 4vw, 5rem); top: 50%; translate: 0 -50%;
+  width: clamp(6rem, 16vw, 12rem); aspect-ratio: 1; border-radius: 50%; background: var(--sun);
+  box-shadow: 0 0 0 1.25rem rgba(242, 182, 50, 0.2), 0 0 0 2.75rem rgba(242, 182, 50, 0.1);
+}
+.page-head .wrap { position: relative; z-index: 1; }
+
+/* About */
+.founder { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 52rem) { .founder { grid-template-columns: 20rem 1fr; gap: 4rem; } }
+.arch {
+  margin: 0; aspect-ratio: 3 / 4; width: 100%; max-width: 20rem;
+  border-radius: 999px 999px 18px 18px; overflow: hidden; position: relative;
+  background: linear-gradient(170deg, var(--sage), var(--leaf));
+}
+.arch img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.arch::before {
+  content: ""; position: absolute; left: 50%; top: 42%; translate: -50% -50%;
+  width: 34%; aspect-ratio: 1; border-radius: 50%; background: rgba(255, 255, 255, 0.35);
+}
+.founder .title { color: var(--muted); margin-top: 0.4rem; }
+
+.sixr { list-style: none; margin: 1.75rem 0 1.25rem; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--rule); }
+.sixr li {
+  font-family: var(--display); font-size: clamp(1.3rem, 3.5vw, 1.75rem); color: var(--deep);
+  padding: 0.85rem 0; border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 46rem) { .sixr { grid-template-columns: repeat(3, 1fr); column-gap: 2rem; } }
+
+.values-list { margin: 2rem 0 0; padding: 0; }
+.values-list > div { display: grid; gap: 0.3rem 2rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
+.values-list > div:last-child { border-bottom: 1px solid var(--rule); }
+.values-list dt { font-family: var(--display); font-size: 1.35rem; color: var(--deep); }
+.values-list dd { margin: 0; color: var(--muted); max-width: 52ch; }
+@media (min-width: 46rem) { .values-list > div { grid-template-columns: 16rem 1fr; } }
+
+/* Gallery */
+.gallery { display: grid; gap: 2.5rem 1.75rem; margin-top: 0; grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr)); list-style: none; padding: 0; }
+.gallery figure { margin: 0; }
+.gallery .arch { max-width: none; }
+.gallery figcaption { margin-top: 0.85rem; font-family: var(--display); font-size: 1.15rem; color: var(--deep); }
+.gallery li:nth-child(3n+2) .arch { background: linear-gradient(170deg, #f6dfa0, #d9a441); }
+.gallery li:nth-child(3n+3) .arch { background: linear-gradient(170deg, #b8d6c6, #2f6b52); }
+.gallery-note { margin-top: 3rem; color: var(--muted); }
+
+.cta-strip { text-align: left; }
+.cta-strip h2 { max-width: 20ch; }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--deep); color: #cfe0c4; padding-block: 3rem 2rem; }
+.site-footer a { color: #e9f2e2; }
+.site-footer .cols { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+@media (min-width: 46rem) { .site-footer .cols { grid-template-columns: 1.4fr 1fr 1fr; } }
+.site-footer h2 { font-size: 1.1rem; color: #fff; margin-bottom: 0.75rem; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { padding: 0.2rem 0; }
+.site-footer .brand { color: #fff; }
+.site-footer .fine { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.9rem; color: #a9c29d; max-width: none; }
+
+/* Six R's on the dark band */
+.band .sixr, .band .sixr li { border-color: rgba(255, 255, 255, 0.25); }
+.band .sixr li { color: #fff; }
+
+.hero + .section { padding-top: clamp(1rem, 3vw, 2rem); }
+@media (max-width: 40rem) {
+  .sun { width: 6rem; right: 1rem; top: 1.5rem; opacity: 0.9; }
+}
+
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -92,6 +379,23 @@
     <p class="fine">&copy; 2026 Reconneckshons Wellness Center. Site design by Yannick Pessoa (@yahnyk on X and Instagram).</p>
   </div>
 </footer>
-<script src="js/main.js" defer></script>
+<script>
+// Mobile menu toggle
+const toggle = document.querySelector(".nav-toggle");
+const nav = document.getElementById("nav");
+if (toggle && nav) {
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", (e) => {
+    if (e.target.closest("a")) {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+</script>
 </body>
 </html>
